@@ -1,6 +1,7 @@
 from __future__ import print_function
 
-import rsi2
+from samples.rsi2 import RSI2
+
 from pyalgotrade import plotter
 from pyalgotrade.barfeed import yahoofeed
 from pyalgotrade.stratanalyzer import sharpe
@@ -17,11 +18,11 @@ def main(plot):
     # Load the bars. These files were manually downloaded from Yahoo Finance.
     feed = yahoofeed.Feed()
     for year in range(2009, 2013):
-        fileName = "%s-%d-yahoofinance.csv" % (instrument, year)
+        fileName = "data/%s-%d-yahoofinance.csv" % (instrument, year)
         print("Loading bars from %s" % fileName)
         feed.addBarsFromCSV(instrument, fileName)
 
-    strat = rsi2.RSI2(feed, instrument, entrySMA, exitSMA, rsiPeriod, overBoughtThreshold, overSoldThreshold)
+    strat = RSI2(feed, instrument, entrySMA, exitSMA, rsiPeriod, overBoughtThreshold, overSoldThreshold)
     sharpeRatioAnalyzer = sharpe.SharpeRatio()
     strat.attachAnalyzer(sharpeRatioAnalyzer)
 

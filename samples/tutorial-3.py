@@ -26,7 +26,7 @@ class MyStrategy(strategy.BacktestingStrategy):
 
 # Load the bar feed from the CSV file
 feed = quandlfeed.Feed()
-feed.addBarsFromCSV("orcl", "WIKI-ORCL-2000-quandl.csv")
+feed.addBarsFromCSV("orcl", "data/WIKI-ORCL-2011-quandl.csv")
 
 # Evaluate the strategy with the feed's bars.
 myStrategy = MyStrategy(feed, "orcl")
